@@ -1,14 +1,14 @@
 what I did: 
 
-1-Task: Calendar Conflict Optimizer
-2-keycloak integration
-3-keycloak realm json file for create realm, client and users
-4- spring boot job to sync keycloak users in calender database
-5-SQL + Query Optimization
-6-API Design + Implementation
-7- System Design Document simple digram showing application compnents (under /diagram)
-8- DB migration using liquibase
-9- Dockerization : dockrize the (postgres, realm import, keycloak, calender service and added .env for config injection)
+1-Task: Calendar Conflict Optimizer.
+2-keycloak integration.
+3-keycloak realm json file for create realm, client and users.
+4- spring boot job to sync keycloak users in calender database.
+5-SQL + Query Optimization.
+6-API Design + Implementation.
+7- System Design Document simple digram showing application compnents (under /diagram).
+8- DB migration using liquibase.
+9- Dockerization : dockrize the (postgres, realm import, keycloak, calender service and added .env for config injection).
 
 step to get it run:
 
