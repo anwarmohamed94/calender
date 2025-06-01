@@ -1,0 +1,241 @@
+{
+	"info": {
+		"_postman_id": "051846dd-b102-4b24-9857-1dcd4be155ba",
+		"name": "digi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32616008"
+	},
+	"item": [
+		{
+			"name": "whoami",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "get token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "admin-cli",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/realms/master/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"realms",
+						"master",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create property",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <OWNER_TOKEN>"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\": \"Beach Villa\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/properties",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"properties"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8081/api/properties \\\r\n  -H \"Authorization: Bearer <OWNER_TOKEN>\" \\\r\n  -H \"Content-Type: application/json\" \\\r\n  -d '{\"title\": \"Beach Villa\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "get user properties",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <OWNER_TOKEN>"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/properties/my",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"properties",
+						"my"
+					]
+				},
+				"description": "Generated from cURL: curl -H \"Authorization: Bearer <OWNER_TOKEN>\" \\\n  http://localhost:8081/api/properties/my"
+			},
+			"response": []
+		},
+		{
+			"name": "create booking",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <USER_TOKEN>"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"propertyId\": 1,\r\n    \"startDate\": \"2025-05-15T09:00:00Z\",\r\n    \"endDate\": \"2025-05-15T10:00:00Z\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/bookings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"bookings"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8081/api/bookings \\\r\n  -H \"Authorization: Bearer <USER_TOKEN>\" \\\r\n  -H \"Content-Type: application/json\" \\\r\n  -d '{\r\n    \"propertyId\": 1,\r\n    \"startDate\": \"2025-05-15T09:00:00Z\",\r\n    \"endDate\": \"2025-05-15T10:00:00Z\"\r\n  }'"
+			},
+			"response": []
+		},
+		{
+			"name": "get user bookings",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <USER_TOKEN>"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/bookings/my",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"bookings",
+						"my"
+					]
+				},
+				"description": "Generated from cURL: curl -H \"Authorization: Bearer <USER_TOKEN>\" \\\n  http://localhost:8081/api/bookings/my"
+			},
+			"response": []
+		},
+		{
+			"name": "validate bookings task1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJZYmRFTHdCT0kxYVVDSXRYWkxkQUpTS3NzUG8xZEZGSUxmLWJic1JyRHhvIn0.eyJleHAiOjE3NDg3MTY4OTIsImlhdCI6MTc0ODcxNjU5MiwianRpIjoib25ydHJvOjA5NDU3OTU4LTVkMDYtNDlmZC05OGUzLTAyNTc1YzVlZjU1MSIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9yZWFsbXMvYm9va2luZy1yZWFsbSIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJjOTRiNTE1ZC0wNWNlLTQ0YTMtYmQ0Yy1mNDI0NTNjZGZjMDQiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJib29raW5nLWFwcCIsInNpZCI6ImMxMzYxNzc4LWU5ZDAtNDU2OC1iNzA2LThlY2I4YzBlMDNhYSIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZGVmYXVsdC1yb2xlcy1ib29raW5nLXJlYWxtIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsIlVTRVIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJtb2hhbWVkIGFobWVkIiwicHJlZmVycmVkX3VzZXJuYW1lIjoibW9oYW1lZCIsImdpdmVuX25hbWUiOiJtb2hhbWVkIiwiZmFtaWx5X25hbWUiOiJhaG1lZCIsImVtYWlsIjoibW9oYW1lZEBzdGMuY29tIn0.pGIfvsPjSKx7KRAumZUhRFXYrifrHSawIQcPr1HVxXst0vUWJdxiEvD-RkneOhlW9sG0BbD7rXeDI2_37MV8sb8hSNZUi6w7d1iBnXYKmJalmOCUyfbx9_9jzMDXCIykL7aakH6ZJwzkoXaIcelVbPwITfZmm_CwhmJcte5MVvAFEQ7XynMOBjfiCDXNK4HE_eSkzV7I-fB7p7CtIzAc34XzoNOf-v1IF6PjgQaycvcjZCgFy8RAshbpE8co8dLhqfzq0f3niyz8E2HuCghTX94B0tgY8gD7G49qNtaMnAgTzU2WmFR33i3sT1xEDykjJeTof-td0gZKWUrbNHNpOA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"workingHours\": {\r\n\"start\": \"09:00\",\r\n\"end\": \"17:00\"\r\n},\r\n\"timeZone\": \"Asia/Riyadh\",\r\n\"events\": [\r\n{\r\n\"title\": \"Team Standup\",\r\n\"startTime\": \"2025-05-14T09:30:00+03:00\",\r\n\"endTime\": \"2025-05-14T10:00:00+03:00\"\r\n},\r\n{\r\n\"title\": \"Client Meeting\",\r\n\"startTime\": \"2025-05-14T10:00:00+03:00\",\r\n\"endTime\": \"2025-05-14T11:00:00+03:00\"\r\n},\r\n{\r\n\"title\": \"1:1 Review\",\r\n\"startTime\": \"2025-05-14T10:30:00+03:00\",\r\n\"endTime\": \"2025-05-14T11:30:00+03:00\"\r\n},\r\n{\r\n\"title\": \"Lunch Break\",\r\n\"startTime\": \"2025-05-14T13:00:00+03:00\",\r\n\"endTime\": \"2025-05-14T14:00:00+03:00\"\r\n}\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/bookings/validate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"bookings",
+						"validate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
