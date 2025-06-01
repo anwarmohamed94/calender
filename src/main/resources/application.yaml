@@ -1,0 +1,36 @@
+server:
+  port: 8081
+  
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5434}/${DB_NAME:calender}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  liquibase:
+    enabled: true
+    change-log: classpath:db.changelog-master.yaml
+    
+# Security configuration (if using Spring Security)
+keycloak:
+  realm: booking-realm
+  auth-server-url: http://${KEYCLOAK_HOST:localhost}:${KEYCLOAK_PORT:8080}
+  resource: booking-app
+  public-client: true
+  bearer-only: true
+  principal-attribute: admin
+  master-realm: master
+  master-client: admin-cli
+  admin: 
+    username: admin
+    password: admin
+  jwk-set-uri: ${keycloak.auth-server-url}/realms/${keycloak.realm}/protocol/openid-connect/certs
+  
+sync-users:
+    job-rate: ${SYNC_USERS_JOB_RATE:180000}
